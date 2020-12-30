@@ -1,0 +1,69 @@
+package GameObjects;
+
+import util.Resource;
+import util.Animation;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+import static GameUserInterface.GameScreen.GRAVITY;
+import static GameUserInterface.GameScreen.GROUND;
+
+public class MainHero {
+    private float x = 0;
+    private float y = 0;
+    private float speedY = 0;
+    private Animation heroRun;
+
+    public MainHero(){
+        heroRun =  new Animation(200);
+        heroRun.addFrame(Resource.getResourceImage("images/fox-hero-1.png"));
+        heroRun.addFrame(Resource.getResourceImage("images/fox-hero-2.png"));
+    }
+
+    public void update(){
+        heroRun.update();
+        if(y >= GROUND - heroRun.getFrame().getHeight()){
+            speedY = 0;
+            y = GROUND - heroRun.getFrame().getHeight();
+        }else {
+            speedY += GRAVITY;
+            y += speedY;
+        }
+    }
+    public void draw(Graphics g){
+        g.drawRect((int) x,(int) y, heroRun.getFrame().getWidth(), heroRun.getFrame().getHeight());
+        g.drawImage(heroRun.getFrame(), (int) x, (int)y , null );
+    }
+
+    public void jump(){
+        speedY = -4;
+        y += speedY;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public float getSpeedY() {
+        return speedY;
+    }
+
+    public void setSpeedY(float speedY) {
+        this.speedY = speedY;
+    }
+
+
+}
