@@ -20,7 +20,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public GameScreen(){
         thread = new Thread(this);
         mainHero = new MainHero();
-        land = new Land();
+        land = new Land(this);
     }
     public void startGame(){
         thread.start();
@@ -30,6 +30,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         while (true){
             try {
                 mainHero.update();
+                land.update();
                 repaint();
                 Thread.sleep(20);
             } catch (InterruptedException e){
