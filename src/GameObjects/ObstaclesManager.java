@@ -42,7 +42,11 @@ public class ObstaclesManager {
             o.draw(g);
         }
     }
-    private Obstacle getRandomObstacle(){
+    public void reset(){
+        obstacles.clear();
+        obstacles.add(getRandomObstacle());
+    }
+    public Obstacle getRandomObstacle(){
         Obstacle obstacle;
         obstacle = new Obstacle();
         obstacle.setX(1280);
