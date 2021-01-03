@@ -42,8 +42,11 @@ public class MainHero {
         return rect;
     }
     public void draw(Graphics g){
-        g.drawRect((int) x,(int) y, heroRun.getFrame().getWidth(), heroRun.getFrame().getHeight());
-        g.drawImage(heroRun.getFrame(), (int) x, (int)y , null );
+        //g.drawRect((int) x,(int) y, heroRun.getFrame().getWidth(), heroRun.getFrame().getHeight());
+        if(!getAlive()){
+            g.drawImage(Resource.getResourceImage("images/fox-hero-dead.png"), (int) x, (int) y, null);
+        }
+        else g.drawImage(heroRun.getFrame(), (int) x, (int)y , null );
     }
 
     public void jump(){

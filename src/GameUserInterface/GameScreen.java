@@ -28,6 +28,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public GameScreen(){
         thread = new Thread(this);
         mainHero = new MainHero();
+        mainHero.setX(50);
         land = new Land(this);
         clouds = new Clouds();
         obstaclesManager = new ObstaclesManager(mainHero);
@@ -63,8 +64,6 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public void paint (Graphics g){
         Image background = Toolkit.getDefaultToolkit().getImage("images/BG-1.png");
         g.drawImage(background, 0, 0, this);
-        g.setColor(Color.black);
-        g.drawLine(0,(int) GROUND, getWidth(),(int) GROUND);
         switch (gameState){
             case GAME_FIRST_STATE:
                 clouds.draw(g);
@@ -102,7 +101,9 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     }
     @Override
     public void keyPressed(KeyEvent e){
-        mainHero.jump();
+        if(gameState == GAME_PLAY_STATE) {
+            mainHero.jump();
+        }
     }
     @Override
     public void keyReleased(KeyEvent e){
@@ -115,11 +116,10 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             case KeyEvent.VK_ENTER:
                 if(gameState == GAME_OVER_STATE){
                     score = 0.0f;
+                    obstaclesManager.reset();
                     mainHero.setAlive(true);
-                    gameState = GAME_FIRST_STATE;
+                    gameState = GAME_PLAY_STATE;
                 }
         }
-
     }
-
 }
