@@ -31,7 +31,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             try {
                 mainHero.update();
                 land.update();
-                repaint();
+                super.repaint();
                 Thread.sleep(20);
             } catch (InterruptedException e){
                 e.printStackTrace();

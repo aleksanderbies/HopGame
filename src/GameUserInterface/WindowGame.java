@@ -11,6 +11,8 @@ import javax.imageio.*;
 public class WindowGame extends JFrame{
 
     private GameScreen gameScreen;
+    private StartMenu startMenu;
+    Container contentPane;
 
     public WindowGame(){
 
@@ -20,21 +22,27 @@ public class WindowGame extends JFrame{
         setMinimumSize(new Dimension(1280,680));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameScreen = new GameScreen();
-        add(gameScreen);
-        addKeyListener(gameScreen);
+        startMenu = new StartMenu();
+        contentPane = getContentPane();
 
     }
     public void startGame(){
+        add(gameScreen);
+        addKeyListener(gameScreen);
         gameScreen.startGame();
     }
+
+    public void createMenu() {
+        add(startMenu);
+        startMenu.addMouseListener(new MouseInput());
+        startMenu.createMenu();
+    }
+
     public static void main (String args[]){
         WindowGame gw = new WindowGame();
-        /*try{
-            gw.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("images/BG-1.png")))));
-        }catch (IOException e) {
-            System.out.println(e);
-        }*/
+
         gw.setVisible(true);
-        gw.startGame();
+        //gw.startGame();
+        gw.createMenu();
     }
 }
