@@ -22,18 +22,13 @@ public class WindowGame extends JFrame{
         gameScreen = new GameScreen();
         add(gameScreen);
         addKeyListener(gameScreen);
-
     }
+
     public void startGame(){
         gameScreen.startGame();
     }
     public static void main (String args[]){
         WindowGame gw = new WindowGame();
-        /*try{
-            gw.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("images/BG-1.png")))));
-        }catch (IOException e) {
-            System.out.println(e);
-        }*/
         gw.setVisible(true);
         gw.startGame();
     }
