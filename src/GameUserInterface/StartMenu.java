@@ -1,40 +1,43 @@
 package GameUserInterface;
 
-import GameObjects.*;
-import com.sun.javafx.geom.Rectangle;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+
 
 public class StartMenu extends JPanel implements Runnable, KeyListener {
 
     private Thread thread;
-    public Shape newGameButton = new Rectangle2D.Float(580, 200, 200, 50);
-    public Shape exitGameButton = new Rectangle2D.Float(580, 550, 200, 50);
+    public static boolean running = true;
+    public static boolean hover = false;
+    public static boolean checked = false;
 
-    public Shape foxFrame = new Rectangle2D.Float(400, 375, 120, 120);
-    public Shape monkeyFrame = new Rectangle2D.Float(550, 375, 120, 120);
-    public Shape humanFrame = new Rectangle2D.Float(700, 375, 120, 120);
-    public Shape santaFrame = new Rectangle2D.Float(850, 375, 120, 120);
+    private final Shape newGameButton = new Rectangle2D.Float(580, 200, 200, 50);
+    private final Shape exitGameButton = new Rectangle2D.Float(580, 470, 200, 50);
 
+    private final Shape foxFrame = new Rectangle2D.Float(400, 325, 120, 120);
+    private final Shape monkeyFrame = new Rectangle2D.Float(550, 325, 120, 120);
+    private final Shape humanFrame = new Rectangle2D.Float(700, 325, 120, 120);
+    private final Shape santaFrame = new Rectangle2D.Float(850, 325, 120, 120);
+
+    private final Image foxImg = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/choose_fox.png");
+    private final Image monkeyImg = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/choose_monkey.png");
+    private final Image humanImg = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/choose_human.png");
+    private final Image santaImg = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/choose_santa.png");
 
     public StartMenu(){
         thread = new Thread(this);
     }
+
     public void createMenu(){
         thread.start();
     }
 
     @Override
     public void run(){
-        while (true){
+        while (running){
             try {
                 super.repaint();
                 Thread.sleep(20);
@@ -53,30 +56,29 @@ public class StartMenu extends JPanel implements Runnable, KeyListener {
         g.fillRect(0, 0, 1280, 680);
 
         // Game title
-        Font fnt = new Font("courier", Font.ITALIC, 36);
+        Font fnt = new Font("Helvetica", Font.ITALIC, 36);
         g.setFont(fnt);
         g.setColor(Color.WHITE);
         g.drawString("HOP GAME", 580, 100);
 
         // Buttons
-        Font fntButtons = new Font("courier", Font.ITALIC, 25);
+        Font fntButtons = new Font("Helvetica", Font.ITALIC, 25);
         g.setFont(fntButtons);
-        int ngbX = newGameButton.getBounds().x;
-        int ngbY = newGameButton.getBounds().y;
-        g.drawString("NEW GAME", ngbX + 27, ngbY + 35);
+        g.drawString("NEW GAME", newGameButton.getBounds().x + 27, newGameButton.getBounds().y + 35);
         g2d.draw(newGameButton);
-        int egbX = exitGameButton.getBounds().x;
-        int egbY = exitGameButton.getBounds().y;
-        g.drawString("EXIT GAME", egbX + 27, egbY + 35);
+        g.drawString("EXIT GAME", exitGameButton.getBounds().x + 27, exitGameButton.getBounds().y + 35);
         g2d.draw(exitGameButton);
 
         // Choose character
         g.drawString("CHOOSE YOUR CHARACTER:", 500, 300);
         g2d.draw(foxFrame);
+        g2d.drawImage(foxImg, foxFrame.getBounds().x, foxFrame.getBounds().y + 10, this);
         g2d.draw(monkeyFrame);
+        g2d.drawImage(monkeyImg, monkeyFrame.getBounds().x + 12, monkeyFrame.getBounds().y, this);
         g2d.draw(humanFrame);
+        g2d.drawImage(humanImg, humanFrame.getBounds().x + 20, humanFrame.getBounds().y, this);
         g2d.draw(santaFrame);
-
+        g2d.drawImage(santaImg, santaFrame.getBounds().x + 20, santaFrame.getBounds().y, this);
     }
 
     @Override

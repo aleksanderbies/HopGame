@@ -11,8 +11,8 @@ import javax.imageio.*;
 public class WindowGame extends JFrame{
 
     private GameScreen gameScreen;
-    private StartMenu startMenu;
-    Container contentPane;
+    //private StartMenu startMenu;
+    //Container contentPane;
 
     public WindowGame(){
 
@@ -21,28 +21,28 @@ public class WindowGame extends JFrame{
         setMaximumSize(new Dimension(1280,680));
         setMinimumSize(new Dimension(1280,680));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
         gameScreen = new GameScreen();
-        startMenu = new StartMenu();
-        contentPane = getContentPane();
-
-    }
-    public void startGame(){
         add(gameScreen);
         addKeyListener(gameScreen);
+        gameScreen.addMouseListener(new MouseInput());
+    }
+
+    public void startGame(){
         gameScreen.startGame();
     }
 
-    public void createMenu() {
+    /** public void createMenu() {
+        contentPane.removeAll();
         add(startMenu);
         startMenu.addMouseListener(new MouseInput());
         startMenu.createMenu();
-    }
+    } */
 
-    public static void main (String args[]){
+    public static void main (String args[]) {
         WindowGame gw = new WindowGame();
-
         gw.setVisible(true);
-        //gw.startGame();
-        gw.createMenu();
+        gw.startGame();
+        //gw.createMenu();
     }
 }

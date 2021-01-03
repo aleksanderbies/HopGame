@@ -37,7 +37,7 @@ public class Land {
     }
     public void draw(Graphics g){
         for(ImageLand imageLand:listImage) {
-            g.drawImage(imageLand.image, imageLand.X_pos, (int) GROUND, null);
+            g.drawImage(imageLand.image, imageLand.X_pos, (int) GROUND-5, null);
         }
     }
 
