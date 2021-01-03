@@ -26,15 +26,19 @@ public class MouseInput implements MouseListener {
         if (mouseY >= 375 && mouseY <= 495) {
             if (mouseX >= 400 && mouseX <= 520) {
                 GameScreen.character = GameScreen.FOX;
+                GameScreen.checked[0] = !GameScreen.checked[0];
                 System.out.println("Fox");
             } else if (mouseX >= 550 && mouseX <= 670) {
                 GameScreen.character = GameScreen.MONKEY;
+                GameScreen.checked[1] = !GameScreen.checked[1];
                 System.out.println("Monkey");
             } else if (mouseX >= 700 && mouseX <= 820) {
                 GameScreen.character = GameScreen.HUMAN;
+                GameScreen.checked[2] = !GameScreen.checked[2];
                 System.out.println("Human");
             } else if (mouseX >= 850 && mouseX <= 970) {
                 GameScreen.character = GameScreen.SANTA;
+                GameScreen.checked[3] = !GameScreen.checked[3];
                 System.out.println("Santa");
             }
         }
@@ -51,18 +55,18 @@ public class MouseInput implements MouseListener {
         int mouseY = e.getY();
 
         if (mouseX >= 580 && mouseX <= 780 && mouseY >= 200 && mouseY <= 250) {
-            GameScreen.hover = true;
+            GameScreen.hoverNewGame = true;
         } else if (mouseX >= 580 && mouseX <= 780 && mouseY >= 470 && mouseY <= 520) {
-            GameScreen.hover = true;
+            //GameScreen.hover = true;
         } else if (mouseY >= 325 && mouseY <= 445) {
             if (mouseX >= 400 && mouseX <= 520) {
-                GameScreen.hover = true;
+                //GameScreen.hover = true;
             } else if (mouseX >= 550 && mouseX <= 670) {
-                GameScreen.hover = true;
+                //GameScreen.hover = true;
             } else if (mouseX >= 700 && mouseX <= 820) {
-                GameScreen.hover = true;
+                //GameScreen.hover = true;
             } else if (mouseX >= 850 && mouseX <= 970) {
-                GameScreen.hover = true;
+                //GameScreen.hover = true;
             }
         }
     }
@@ -73,18 +77,18 @@ public class MouseInput implements MouseListener {
         int mouseY = e.getY();
 
         if (mouseX >= 580 && mouseX <= 780 && mouseY >= 200 && mouseY <= 250) {
-            StartMenu.hover = false;
+            GameScreen.hoverNewGame = false;
         } else if (mouseX >= 580 && mouseX <= 780 && mouseY >= 470 && mouseY <= 520) {
-            StartMenu.hover = false;
+            //GameScreen.hover = false;
         } else if (mouseY >= 325 && mouseY <= 445) {
             if (mouseX >= 400 && mouseX <= 520) {
-                StartMenu.hover = false;
+               // GameScreen.hover = false;
             } else if (mouseX >= 550 && mouseX <= 670) {
-                StartMenu.hover = false;
+                //GameScreen.hover = false;
             } else if (mouseX >= 700 && mouseX <= 820) {
-                StartMenu.hover = false;
+                //GameScreen.hover = false;
             } else if (mouseX >= 850 && mouseX <= 970) {
-                StartMenu.hover = false;
+                //GameScreen.hover = false;
             }
         }
     }

@@ -11,8 +11,6 @@ import javax.imageio.*;
 public class WindowGame extends JFrame{
 
     private GameScreen gameScreen;
-    //private StartMenu startMenu;
-    //Container contentPane;
 
     public WindowGame(){
 
@@ -32,17 +30,9 @@ public class WindowGame extends JFrame{
         gameScreen.startGame();
     }
 
-    /** public void createMenu() {
-        contentPane.removeAll();
-        add(startMenu);
-        startMenu.addMouseListener(new MouseInput());
-        startMenu.createMenu();
-    } */
-
     public static void main (String args[]) {
         WindowGame gw = new WindowGame();
         gw.setVisible(true);
         gw.startGame();
-        //gw.createMenu();
     }
 }
