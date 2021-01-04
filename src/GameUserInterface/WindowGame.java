@@ -1,7 +1,5 @@
 package GameUserInterface;
 
-import javafx.scene.layout.BackgroundImage;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;

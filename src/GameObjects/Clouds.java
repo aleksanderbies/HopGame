@@ -12,7 +12,7 @@ public class Clouds {
     private List <Cloud> clouds;
 
     public  Clouds(){
-        cloudImage = Resource.getResourceImage("images/cloud1.png");
+        cloudImage = Resource.getResourceImage("images/sky/cloud1.png");
         clouds = new ArrayList<Cloud>();
 
         Cloud cloud1 = new Cloud();

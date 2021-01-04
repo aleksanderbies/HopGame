@@ -18,8 +18,8 @@ public class ObstaclesManager {
     public ObstaclesManager(MainHero mainHero){
         this.mainHero = mainHero;
         obstacles = new ArrayList<Obstacles>();
-        cactus1 = Resource.getResourceImage("images/Cactus (1).png");
-        cactus2 = Resource.getResourceImage("images/Cactus (2).png");
+        cactus1 = Resource.getResourceImage("images/obstacles/Cactus (1).png");
+        cactus2 = Resource.getResourceImage("images/obstacles/Cactus (2).png");
         random = new Random();
         obstacles.add(getRandomObstacle());
         random = new Random();

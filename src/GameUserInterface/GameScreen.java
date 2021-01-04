@@ -26,10 +26,10 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
     private final Shape newGameButton = new Rectangle2D.Float(580, 470, 200, 50);
 
-    private final Shape foxFrame = new Rectangle2D.Float(400, 325, 120, 120);
-    private final Shape monkeyFrame = new Rectangle2D.Float(550, 325, 120, 120);
-    private final Shape humanFrame = new Rectangle2D.Float(700, 325, 120, 120);
-    private final Shape santaFrame = new Rectangle2D.Float(850, 325, 120, 120);
+    private final Shape foxFrame = new Rectangle2D.Float(100, 325, 120, 120);
+    private final Shape monkeyFrame = new Rectangle2D.Float(420, 325, 120, 120);
+    private final Shape humanFrame = new Rectangle2D.Float(750, 325, 120, 120);
+    private final Shape santaFrame = new Rectangle2D.Float(1050, 325, 120, 120);
 
     private final Image foxImg = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/choose_fox.png");
     private final Image monkeyImg = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/choose_monkey.png");
@@ -95,7 +95,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     }
     @Override
     public void paint (Graphics g){
-        Image background = Toolkit.getDefaultToolkit().getImage("images/BG-1.png");
+        Image background = Toolkit.getDefaultToolkit().getImage("images/backgrounds/BG-1.png");
         g.drawImage(background, 0, 0, this);
         switch (gameState){
             case GAME_FIRST_STATE:
