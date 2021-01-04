@@ -14,7 +14,7 @@ public class Land {
 
     public Land(GameScreen game){
         listImage = new ArrayList<ImageLand>();
-        imageLand1= Resource.getResourceImage("images/ground-1.png");
+        imageLand1= Resource.getResourceImage("images/grounds/ground-1.png");
         float Counter = 1280/imageLand1.getWidth();
         System.out.println(Counter);
         for (int i = 0; i<(int) Counter + 1; i++){

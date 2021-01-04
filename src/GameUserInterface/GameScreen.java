@@ -93,7 +93,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     }
     @Override
     public void paint (Graphics g){
-        Image background = Toolkit.getDefaultToolkit().getImage("images/BG-1.png");
+        Image background = Toolkit.getDefaultToolkit().getImage("images/backgrounds/BG-1.png");
         g.drawImage(background, 0, 0, this);
         switch (gameState){
             case GAME_FIRST_STATE:

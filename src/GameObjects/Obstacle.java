@@ -13,7 +13,7 @@ public class Obstacle extends Obstacles{
     private Rectangle rect;
 
     public Obstacle(){
-        image = Resource.getResourceImage("images/Cactus (1).png");
+        image = Resource.getResourceImage("images/obstacles/Cactus (1).png");
         X_pos = 1280;
         Y_pos = (int) GROUND - image.getHeight();
         rect = new Rectangle();

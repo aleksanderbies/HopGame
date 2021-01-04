@@ -20,8 +20,8 @@ public class MainHero {
 
     public MainHero(){
         heroRun =  new Animation(200);
-        heroRun.addFrame(Resource.getResourceImage("images/fox-hero-1.png"));
-        heroRun.addFrame(Resource.getResourceImage("images/fox-hero-2.png"));
+        heroRun.addFrame(Resource.getResourceImage("images/heroes/fox-hero-1.png"));
+        heroRun.addFrame(Resource.getResourceImage("images/heroes/fox-hero-2.png"));
         rect = new Rectangle();
     }
 
@@ -45,7 +45,7 @@ public class MainHero {
     public void draw(Graphics g){
         //g.drawRect((int) x,(int) y, heroRun.getFrame().getWidth(), heroRun.getFrame().getHeight());
         if(!getAlive()){
-            g.drawImage(Resource.getResourceImage("images/fox-hero-dead.png"), (int) x, (int) y, null);
+            g.drawImage(Resource.getResourceImage("images/heroes/fox-hero-dead.png"), (int) x, (int) y, null);
         }
         else g.drawImage(heroRun.getFrame(), (int) x, (int)y , null );
     }
