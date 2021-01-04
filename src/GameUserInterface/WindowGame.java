@@ -19,15 +19,18 @@ public class WindowGame extends JFrame{
         setMaximumSize(new Dimension(1280,680));
         setMinimumSize(new Dimension(1280,680));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
         gameScreen = new GameScreen();
         add(gameScreen);
         addKeyListener(gameScreen);
+        gameScreen.addMouseListener(new MouseInput());
     }
 
     public void startGame(){
         gameScreen.startGame();
     }
-    public static void main (String args[]){
+
+    public static void main (String args[]) {
         WindowGame gw = new WindowGame();
         gw.setVisible(true);
         gw.startGame();

@@ -13,9 +13,10 @@ public class MainHero {
     private float x = 0;
     private float y = 380;
     private float speedY = 0;
-    private Animation heroRun;
+    public static Animation heroRun;
     private Rectangle rect;
     private boolean alive = true;
+
 
     public MainHero(){
         heroRun =  new Animation(200);

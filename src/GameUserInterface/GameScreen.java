@@ -7,14 +7,43 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class GameScreen extends JPanel implements Runnable, KeyListener {
+
+    // ************************************
+    // Menu variables
+    public static boolean hoverNewGame = false;
+    public static boolean[] checked = {false, false, false, false};
+
+    public static final int FOX = 0;
+    public static final int MONKEY = 1;
+    public static final int HUMAN = 2;
+    public static final int SANTA = 3;
+    public static int character;
+
+    private final Shape newGameButton = new Rectangle2D.Float(580, 200, 200, 50);
+    private final Shape exitGameButton = new Rectangle2D.Float(580, 470, 200, 50);
+
+    private final Shape foxFrame = new Rectangle2D.Float(400, 325, 120, 120);
+    private final Shape monkeyFrame = new Rectangle2D.Float(550, 325, 120, 120);
+    private final Shape humanFrame = new Rectangle2D.Float(700, 325, 120, 120);
+    private final Shape santaFrame = new Rectangle2D.Float(850, 325, 120, 120);
+
+    private final Image foxImg = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/choose_fox.png");
+    private final Image monkeyImg = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/choose_monkey.png");
+    private final Image humanImg = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/choose_human.png");
+    private final Image santaImg = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/choose_santa.png");
+    // ************************************
+
     public static final int GAME_FIRST_STATE = 0;
     public static final int GAME_PLAY_STATE = 1;
     public static final int GAME_OVER_STATE = 2;
+    public static final int GAME_MENU_STATE = 3;
+
     public static final float GRAVITY = 0.1f;
     public static final float GROUND = 480;
     private MainHero mainHero;
@@ -24,7 +53,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private ObstaclesManager obstaclesManager;
     private float score = 0.0f;
 
-    private int gameState = GAME_FIRST_STATE;
+    public static int gameState = GAME_MENU_STATE;
+
     public GameScreen(){
         thread = new Thread(this);
         mainHero = new MainHero();
@@ -51,6 +81,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 }
             }
         }
+
     public void update(){
         mainHero.update();
         land.update();
@@ -92,6 +123,63 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 mainHero.draw(g);
                 obstaclesManager.draw(g);
                 break;
+            case GAME_MENU_STATE:
+                Graphics2D g2d = (Graphics2D) g;
+
+                // Background
+                g.setColor(new Color(20, 89,35));
+                g.fillRect(0, 0, 1280, 680);
+
+                // Game title
+                Font fnt = new Font("Helvetica", Font.ITALIC, 36);
+                g.setFont(fnt);
+                g.setColor(Color.WHITE);
+                g.drawString("HOP GAME", 580, 100);
+
+                // Buttons
+                Font fntButtons = new Font("Helvetica", Font.ITALIC, 25);
+                g.setFont(fntButtons);
+                g.drawString("NEW GAME", newGameButton.getBounds().x + 27, newGameButton.getBounds().y + 35);
+                g2d.draw(newGameButton);
+                g.drawString("EXIT GAME", exitGameButton.getBounds().x + 27, exitGameButton.getBounds().y + 35);
+                g2d.draw(exitGameButton);
+
+                // Choose character
+                Color checkColor = new Color(255, 255, 255, 144);
+                g.drawString("CHOOSE YOUR CHARACTER:", 500, 300);
+
+                g2d.draw(foxFrame);
+                if (checked[0]) {
+                    g2d.setColor(checkColor);
+                    g2d.fill(foxFrame);
+                    g2d.setColor(Color.WHITE);
+                }
+                g2d.drawImage(foxImg, foxFrame.getBounds().x, foxFrame.getBounds().y + 10, this);
+
+                g2d.draw(monkeyFrame);
+                if (checked[1]) {
+                    g2d.setColor(checkColor);
+                    g2d.fill(monkeyFrame);
+                    g2d.setColor(Color.WHITE);
+                }
+                g2d.drawImage(monkeyImg, monkeyFrame.getBounds().x + 12, monkeyFrame.getBounds().y, this);
+
+                g2d.draw(humanFrame);
+                if (checked[2]) {
+                    g2d.setColor(checkColor);
+                    g2d.fill(humanFrame);
+                    g2d.setColor(Color.WHITE);
+                }
+                g2d.drawImage(humanImg, humanFrame.getBounds().x + 20, humanFrame.getBounds().y, this);
+
+                g2d.draw(santaFrame);
+                if (checked[3]) {
+                    g2d.setColor(checkColor);
+                    g2d.fill(santaFrame);
+                    g2d.setColor(Color.WHITE);
+                }
+                g2d.drawImage(santaImg, santaFrame.getBounds().x + 20, santaFrame.getBounds().y, this);
+                break;
         }
     }
 
@@ -101,7 +189,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     }
     @Override
     public void keyPressed(KeyEvent e){
-        if(gameState == GAME_PLAY_STATE) {
+        if(gameState == GAME_PLAY_STATE && mainHero.getY() == GROUND - MainHero.heroRun.getFrame().getHeight()) {
             mainHero.jump();
         }
     }
