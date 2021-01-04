@@ -135,17 +135,13 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 g2d.drawImage(titleImg, 450 ,30, this);
 
                 // Buttons
-                /**g.setColor(Color.BLACK);
-                Font fntButtons = new Font("Helvetica", Font.ITALIC, 25);
-                g.setFont(fntButtons);
-                g.drawString("NEW GAME", newGameButton.getBounds().x + 27, newGameButton.getBounds().y + 35);
-                g2d.draw(newGameButton);*/
-                g2d.drawImage(startGameGif, 580, 470, this);
+                g2d.drawImage(startGameGif, 470, 470, this);
 
                 // Choose character
                 Color checkColor = new Color(38, 38, 38, 144);
                 g2d.drawImage(chooseImg, 380, 250, this);
 
+                g2d.setColor(Color.BLACK);
                 g2d.draw(foxFrame);
                 if (checked[0]) {
                     g2d.setColor(checkColor);
