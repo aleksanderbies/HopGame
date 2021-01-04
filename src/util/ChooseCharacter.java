@@ -3,19 +3,57 @@ package util;
 import GameUserInterface.GameScreen;
 
 public class ChooseCharacter {
-    private void changeCharacter() {
+
+    public static String backgroundPath = "images/backgrounds/BG-1.png";
+    public static String groundPath = "images/grounds/ground-1.png";
+    public static String hero1Path = "images/heroes/fox-hero-1.png";
+    public static String hero2Path = "images/heroes/fox-hero-2.png";
+    public static String heroDeadPath = "images/heroes/fox-hero-dead.png";
+    public static String obstacle1Path = "images/obstacles/Cactus (1).png";
+    public static String obstacle2Path = "images/obstacles/Cactus (2).png";
+    public static String skyPath = "images/sky/cloud1.png";
+
+    public void changeCharacter() {
         switch (GameScreen.character) {
             case GameScreen.FOX:
-                System.out.println("Fox cc");
+                backgroundPath = "images/backgrounds/BG-1.png";
+                groundPath = "images/grounds/ground-1.png";
+                hero1Path = "images/heroes/fox-hero-1.png";
+                hero2Path = "images/heroes/fox-hero-2.png";
+                heroDeadPath = "images/heroes/fox-hero-dead.png";
+                obstacle1Path = "images/obstacles/Cactus (1).png";
+                obstacle2Path = "images/obstacles/Cactus (2).png";
+                skyPath = "images/sky/cloud1.png";
                 break;
             case GameScreen.MONKEY:
-                System.out.println("monkey cc");
+                backgroundPath = "images/backgrounds/BG-2.png";
+                groundPath = "images/grounds/ground-2.png";
+                hero1Path = "images/heroes/monkey-hero-1.png";
+                hero2Path = "images/heroes/monkey-hero-2.png";
+                heroDeadPath = "images/heroes/monkey-hero-dead.png";
+                obstacle1Path = "images/obstacles/jungle-tree-1.png";
+                obstacle2Path = "images/obstacles/jungle-tree-2.png";
+                skyPath = "images/sky/cloud1.png";
                 break;
             case GameScreen.HUMAN:
-                System.out.println("human cc");
+                backgroundPath = "images/backgrounds/BG-3.png";
+                groundPath = "images/grounds/ground-3.png";
+                hero1Path = "images/heroes/human-hero-1.png";
+                hero2Path = "images/heroes/human-hero-2.png";
+                heroDeadPath = "images/heroes/human-hero-dead.png";
+                obstacle1Path = "images/obstacles/forest-tree.png";
+                obstacle2Path = "images/obstacles/forest-obstacle.png";
+                skyPath = "images/sky/cloud1.png";
                 break;
             case GameScreen.SANTA:
-                System.out.println("santa cc");
+                backgroundPath = "images/backgrounds/BG-4.png";
+                groundPath = "images/grounds/ground-4.png";
+                hero1Path = "images/heroes/santa-hero-1.png";
+                hero2Path = "images/heroes/santa-hero-2.png";
+                heroDeadPath = "images/heroes/santa-hero-dead.png";
+                obstacle1Path = "images/obstacles/christmas-tree.png";
+                obstacle2Path = "images/obstacles/snowman-winter.png";
+                skyPath = "images/sky/xmas-star.png";
                 break;
         }
     }

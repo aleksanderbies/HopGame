@@ -10,7 +10,8 @@ public class MouseInput implements MouseListener {
         int mouseX = e.getX();
         int mouseY = e.getY();
 
-        if (mouseX >= 470 && mouseX <= 870 && mouseY >= 470 && mouseY <= 570) {
+        if (mouseX >= 470 && mouseX <= 891 && mouseY >= 500 && mouseY <= 590) {
+            GameScreen.chooseCharacter.changeCharacter();
             GameScreen.gameState = GameScreen.GAME_FIRST_STATE;
             System.out.println("New game clicked");
         }

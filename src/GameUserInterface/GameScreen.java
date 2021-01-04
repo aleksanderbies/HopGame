@@ -1,6 +1,7 @@
 package GameUserInterface;
 
 import GameObjects.*;
+import util.ChooseCharacter;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -53,17 +54,14 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private Land land;
     private Clouds clouds;
     private ObstaclesManager obstaclesManager;
+    public static ChooseCharacter chooseCharacter;
     private float score = 0.0f;
 
     public static int gameState = GAME_MENU_STATE;
 
     public GameScreen(){
         thread = new Thread(this);
-        mainHero = new MainHero();
-        mainHero.setX(50);
-        land = new Land(this);
-        clouds = new Clouds();
-        obstaclesManager = new ObstaclesManager(mainHero);
+        chooseCharacter = new ChooseCharacter();
     }
     public void startGame(){
         thread.start();
@@ -95,10 +93,15 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     }
     @Override
     public void paint (Graphics g){
-        Image background = Toolkit.getDefaultToolkit().getImage("images/backgrounds/BG-1.png");
+        Image background = Toolkit.getDefaultToolkit().getImage(ChooseCharacter.backgroundPath);
         g.drawImage(background, 0, 0, this);
         switch (gameState){
             case GAME_FIRST_STATE:
+                mainHero = new MainHero();
+                mainHero.setX(50);
+                land = new Land(this);
+                clouds = new Clouds();
+                obstaclesManager = new ObstaclesManager(mainHero);
                 clouds.draw(g);
                 land.draw(g);
                 g.setFont(new Font("Helvetica", Font.BOLD,50));
@@ -135,7 +138,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 g2d.drawImage(titleImg, 450 ,30, this);
 
                 // Buttons
-                g2d.drawImage(startGameGif, 470, 470, this);
+                g2d.drawImage(startGameGif, 470, 500, this);
 
                 // Choose character
                 Color checkColor = new Color(38, 38, 38, 144);

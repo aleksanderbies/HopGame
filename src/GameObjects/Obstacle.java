@@ -1,5 +1,6 @@
 package GameObjects;
 
+import util.ChooseCharacter;
 import util.Resource;
 
 import java.awt.*;
@@ -13,7 +14,7 @@ public class Obstacle extends Obstacles{
     private Rectangle rect;
 
     public Obstacle(){
-        image = Resource.getResourceImage("images/obstacles/Cactus (1).png");
+        image = Resource.getResourceImage(ChooseCharacter.obstacle1Path);
         X_pos = 1280;
         Y_pos = (int) GROUND - image.getHeight();
         rect = new Rectangle();
