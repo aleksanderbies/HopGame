@@ -1,5 +1,6 @@
 package GameObjects;
 
+import util.ChooseCharacter;
 import util.Resource;
 
 import java.awt.image.BufferedImage;
@@ -12,7 +13,7 @@ public class Clouds {
     private List <Cloud> clouds;
 
     public  Clouds(){
-        cloudImage = Resource.getResourceImage("images/sky/cloud1.png");
+        cloudImage = Resource.getResourceImage(ChooseCharacter.skyPath);
         clouds = new ArrayList<Cloud>();
 
         Cloud cloud1 = new Cloud();
