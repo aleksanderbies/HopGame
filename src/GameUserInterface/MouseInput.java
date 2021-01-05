@@ -10,10 +10,12 @@ public class MouseInput implements MouseListener {
         int mouseX = e.getX();
         int mouseY = e.getY();
 
-        if (mouseX >= 470 && mouseX <= 891 && mouseY >= 500 && mouseY <= 590) {
+        if (mouseX >= 470 && mouseX <= 891 && mouseY >= 500 && mouseY <= 590 && GameScreen.gameState == GameScreen.GAME_MENU_STATE) {
             GameScreen.chooseCharacter.changeCharacter();
             GameScreen.gameState = GameScreen.GAME_FIRST_STATE;
             System.out.println("New game clicked");
+        } else if (mouseX >= 1000 && mouseX <= 1258 && mouseY >= 598 && mouseY <= 648 && GameScreen.gameState != GameScreen.GAME_MENU_STATE) {
+            GameScreen.gameState = GameScreen.GAME_MENU_STATE;
         }
     }
 
@@ -22,7 +24,7 @@ public class MouseInput implements MouseListener {
         int mouseX = e.getX();
         int mouseY = e.getY();
 
-        if (mouseY >= 325 && mouseY <= 445) {
+        if (mouseY >= 325 && mouseY <= 445 && GameScreen.gameState == GameScreen.GAME_MENU_STATE) {
             if (mouseX >= 100 && mouseX <= 220 && !GameScreen.checked[0]) {
                 GameScreen.character = GameScreen.FOX;
                 GameScreen.checked[0] = true;

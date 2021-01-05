@@ -40,6 +40,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private final Image titleImg = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/title.png");
     private final Image chooseImg = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/choose_text.png");
     private final Image startGameGif = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/start_game.gif");
+    private final Image backToMenuImg = Toolkit.getDefaultToolkit().getImage("images/texts/back_to_menu.gif");
     // ************************************
 
     public static final int GAME_FIRST_STATE = 0;
@@ -106,6 +107,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 land.draw(g);
                 g.setFont(new Font("Helvetica", Font.BOLD,50));
                 g.drawString("Press space to start", 380,200);
+                g.drawImage(backToMenuImg, 1000, 598, this);
                 mainHero.draw(g);
                 break;
             case GAME_PLAY_STATE:
@@ -113,6 +115,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 land.draw(g);
                 g.setFont(new Font("Helvetica", Font.BOLD,20));
                 g.drawString("Score: "+String.valueOf((int) Math.floor(score)), 1100,50);
+                g.drawImage(backToMenuImg, 1000, 598, this);
                 mainHero.draw(g);
                 obstaclesManager.draw(g);
                 break;
@@ -125,6 +128,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 g.drawString("Game Over!", 502,200);
                 g.setFont(new Font("Helvetica", Font.BOLD,30));
                 g.drawString("Press Enter to play again", 460,250);
+                g.drawImage(backToMenuImg, 1000, 598, this);
                 mainHero.draw(g);
                 obstaclesManager.draw(g);
                 break;
