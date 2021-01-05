@@ -13,6 +13,7 @@ import javax.sound.sampled.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class GameScreen extends JPanel implements Runnable, KeyListener {
 
@@ -67,6 +68,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private final Image gameoverImg = Toolkit.getDefaultToolkit().getImage("images/texts/game_over.png");
     private final Image pressEnterImg = Toolkit.getDefaultToolkit().getImage("images/texts/press_enter.png");
 
+    File bg_sound = new File(ChooseCharacter.bgMusic);
+
     public GameScreen(){
         thread = new Thread(this);
         chooseCharacter = new ChooseCharacter();
@@ -78,7 +81,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
     @Override
     public void run(){
-
+        playMusic();
         while (true){
                 try {
                     if(gameState == GAME_PLAY_STATE) {
@@ -104,16 +107,14 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         }
     }
 
-    /////Zastanowić się nad tym, czy nie zwiększyć ilości warunków, i zmniejszać prędkość o mniejszą wartość zeby było płynniej
-
     private void updateSpeed() {
         if (SPEED_LEVEL <= 1200) {
             if (changedSpeed == false) {
-                if (Math.abs((int) score) % 100 == 0) {
-                    SPEED_LEVEL -= 3;
+                if (Math.abs((int) score) % 100 == 50) {
+                    SPEED_LEVEL -= 2;
                     changedSpeed = true;
                 }
-            } else if (Math.abs((int) score) % 100 == 50) {
+            } else if (Math.abs((int) score) % 100 == 0) {
                 changedSpeed = false;
             }
         }
@@ -239,6 +240,21 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     SPEED_LEVEL = 20;
                 }
         }
+    }
+    private void playMusic(){
+        try {
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(bg_sound);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            volume.setValue(-20f);
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
      
