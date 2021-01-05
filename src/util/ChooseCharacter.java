@@ -13,6 +13,7 @@ public class ChooseCharacter {
     public static String obstacle1Path = "images/obstacles/Cactus (1).png";
     public static String obstacle2Path = "images/obstacles/Cactus (2).png";
     public static String skyPath = "images/sky/cloud1.png";
+    public static String bgMusic = "sounds/rest_bgmusic.wav";
 
     public void changeCharacter() {
         switch (GameScreen.character) {
@@ -25,6 +26,7 @@ public class ChooseCharacter {
                 heroDeadPath = "images/heroes/fox-hero-dead.png";
                 obstacle1Path = "images/obstacles/Cactus (1).png";
                 obstacle2Path = "images/obstacles/Cactus (2).png";
+                bgMusic = "sounds/rest_bgmusic.wav";
                 skyPath = "images/sky/cloud1.png";
                 break;
             case GameScreen.MONKEY:
@@ -36,6 +38,7 @@ public class ChooseCharacter {
                 heroDeadPath = "images/heroes/monkey-hero-dead.png";
                 obstacle1Path = "images/obstacles/jungle-tree-1.png";
                 obstacle2Path = "images/obstacles/jungle-tree-2.png";
+                bgMusic = "sounds/rest_bgmusic.wav";
                 skyPath = "images/sky/cloud1.png";
                 break;
             case GameScreen.HUMAN:
@@ -47,6 +50,7 @@ public class ChooseCharacter {
                 heroDeadPath = "images/heroes/human-hero-dead.png";
                 obstacle1Path = "images/obstacles/forest-tree.png";
                 obstacle2Path = "images/obstacles/forest-obstacle.png";
+                bgMusic = "sounds/rest_bgmusic.wav";
                 skyPath = "images/sky/cloud1.png";
                 break;
             case GameScreen.SANTA:
@@ -58,6 +62,7 @@ public class ChooseCharacter {
                 heroJumpPath = "images/heroes/santa-hero-jmp.png";
                 obstacle1Path = "images/obstacles/christmas-tree.png";
                 obstacle2Path = "images/obstacles/snowman-winter.png";
+                bgMusic = "sounds/winter_bgmusic.wav";
                 skyPath = "images/sky/xmas-star.png";
                 break;
         }

@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Rectangle2D;
+import javax.sound.sampled.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -60,6 +61,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public static ChooseCharacter chooseCharacter;
     private float score = 0.0f;
 
+
     public static int gameState = GAME_MENU_STATE;
 
     public GameScreen(){
@@ -71,6 +73,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     }
     @Override
     public void run(){
+
         while (true){
                 try {
                     if(gameState == GAME_PLAY_STATE) {
