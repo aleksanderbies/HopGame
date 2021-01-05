@@ -44,9 +44,11 @@ public class MainHero {
         return rect;
     }
     public void draw(Graphics g){
-        //g.drawRect((int) x,(int) y, heroRun.getFrame().getWidth(), heroRun.getFrame().getHeight());
         if(!getAlive()){
             g.drawImage(Resource.getResourceImage(ChooseCharacter.heroDeadPath), (int) x, (int) y, null);
+        }
+        else if(this.getY()!= GROUND - heroRun.getFrame().getHeight() && getAlive()){
+            g.drawImage(Resource.getResourceImage(ChooseCharacter.heroJumpPath), (int) x, (int) y, null);
         }
         else g.drawImage(heroRun.getFrame(), (int) x, (int)y , null );
     }

@@ -2,7 +2,6 @@ package GameObjects;
 
 import util.ChooseCharacter;
 import util.Resource;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import static GameUserInterface.GameScreen.GROUND;
@@ -23,11 +22,11 @@ public class Obstacle extends Obstacles{
 
     @Override
     public void update() {
-        X_pos -=2;
-        rect.x = X_pos;
+        X_pos -= 2;
+        rect.x = X_pos+5;
         rect.y = Y_pos;
-        rect.width = image.getWidth();
-        rect.height = image.getHeight();
+        rect.width = image.getWidth()-25;
+        rect.height = image.getHeight()-25;
     }
     @Override
     public void draw(Graphics g) {

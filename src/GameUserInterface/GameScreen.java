@@ -49,6 +49,9 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
     public static final float GRAVITY = 0.1f;
     public static final float GROUND = 480;
+
+    private int SPEED_LEVEL= 20;
+    private boolean changedSpeed = false;
     private MainHero mainHero;
     private Thread thread;
     private Land land;
@@ -75,7 +78,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                         score += 0.1;
                     }
                     repaint();
-                    Thread.sleep(20);
+                    Thread.sleep(SPEED_LEVEL);
                 } catch (InterruptedException e){
                     e.printStackTrace();
                 }
@@ -83,6 +86,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         }
 
     public void update(){
+        updateSpeed();
         mainHero.update();
         land.update();
         clouds.update();
@@ -91,6 +95,20 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             gameState = GAME_OVER_STATE;
         }
     }
+
+    /////Zastanowić się nad tym, czy nie zwiększyć ilości warunków, i zmniejszać prędkość o mniejszą wartość zeby było płynniej
+
+    private void updateSpeed(){
+        if (changedSpeed == false){
+            if(Math.abs((int) score) %100 == 0) {
+                SPEED_LEVEL -= 3;
+                changedSpeed = true;
+            }
+        }
+        else if (Math.abs((int) score) %100  == 50){
+            changedSpeed = false;
+            }
+        }
     @Override
     public void paint (Graphics g){
         Image background = Toolkit.getDefaultToolkit().getImage(ChooseCharacter.backgroundPath);
@@ -204,6 +222,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     obstaclesManager.reset();
                     mainHero.setAlive(true);
                     gameState = GAME_PLAY_STATE;
+                    changedSpeed = false;
+                    SPEED_LEVEL = 20;
                 }
         }
     }
