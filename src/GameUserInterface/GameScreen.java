@@ -26,8 +26,6 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public static final int SANTA = 3;
     public static int character = FOX;
 
-    private final Shape newGameButton = new Rectangle2D.Float(580, 470, 200, 50);
-
     private final Shape foxFrame = new Rectangle2D.Float(100, 325, 120, 120);
     private final Shape monkeyFrame = new Rectangle2D.Float(420, 325, 120, 120);
     private final Shape humanFrame = new Rectangle2D.Float(750, 325, 120, 120);
@@ -43,7 +41,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private final Image startGameGif = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/start_game.gif");
     private final Image backToMenuImg = Toolkit.getDefaultToolkit().getImage("images/texts/back_to_menu.gif");
     // ************************************
-
+    // Game variables
     public static final int GAME_FIRST_STATE = 0;
     public static final int GAME_PLAY_STATE = 1;
     public static final int GAME_OVER_STATE = 2;
@@ -52,7 +50,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public static final float GRAVITY = 0.1f;
     public static final float GROUND = 480;
 
-    private int SPEED_LEVEL= 20;
+    private int SPEED_LEVEL = 20;
     private boolean changedSpeed = false;
     private MainHero mainHero;
     private Thread thread;
@@ -65,13 +63,19 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
     public static int gameState = GAME_MENU_STATE;
 
+    private final Image pressSpaceImg = Toolkit.getDefaultToolkit().getImage("images/texts/press_space.png");
+    private final Image gameoverImg = Toolkit.getDefaultToolkit().getImage("images/texts/game_over.png");
+    private final Image pressEnterImg = Toolkit.getDefaultToolkit().getImage("images/texts/press_enter.png");
+
     public GameScreen(){
         thread = new Thread(this);
         chooseCharacter = new ChooseCharacter();
     }
+
     public void startGame(){
         thread.start();
     }
+
     @Override
     public void run(){
 
@@ -102,17 +106,19 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
     /////Zastanowić się nad tym, czy nie zwiększyć ilości warunków, i zmniejszać prędkość o mniejszą wartość zeby było płynniej
 
-    private void updateSpeed(){
-        if (changedSpeed == false){
-            if(Math.abs((int) score) %100 == 0) {
-                SPEED_LEVEL -= 3;
-                changedSpeed = true;
+    private void updateSpeed() {
+        if (SPEED_LEVEL <= 1200) {
+            if (changedSpeed == false) {
+                if (Math.abs((int) score) % 100 == 0) {
+                    SPEED_LEVEL -= 3;
+                    changedSpeed = true;
+                }
+            } else if (Math.abs((int) score) % 100 == 50) {
+                changedSpeed = false;
             }
         }
-        else if (Math.abs((int) score) %100  == 50){
-            changedSpeed = false;
-            }
-        }
+    }
+
     @Override
     public void paint (Graphics g){
         Image background = Toolkit.getDefaultToolkit().getImage(ChooseCharacter.backgroundPath);
@@ -124,10 +130,12 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 land = new Land(this);
                 clouds = new Clouds();
                 obstaclesManager = new ObstaclesManager(mainHero);
+                score = 0.0f;
+                changedSpeed = false;
+                SPEED_LEVEL = 20;
                 clouds.draw(g);
                 land.draw(g);
-                g.setFont(new Font("Helvetica", Font.BOLD,50));
-                g.drawString("Press space to start", 380,200);
+                g.drawImage(pressSpaceImg, 380, 200, this);
                 g.drawImage(backToMenuImg, 1000, 598, this);
                 mainHero.draw(g);
                 break;
@@ -145,10 +153,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 land.draw(g);
                 g.setFont(new Font("Helvetica", Font.BOLD,20));
                 g.drawString("Score: "+String.valueOf((int) Math.floor(score)), 1100,50);
-                g.setFont(new Font("Helvetica", Font.BOLD,50));
-                g.drawString("Game Over!", 502,200);
-                g.setFont(new Font("Helvetica", Font.BOLD,30));
-                g.drawString("Press Enter to play again", 460,250);
+                g.drawImage(gameoverImg,450, 200, this);
+                g.drawImage(pressEnterImg, 380, 270, this);
                 g.drawImage(backToMenuImg, 1000, 598, this);
                 mainHero.draw(g);
                 obstaclesManager.draw(g);
