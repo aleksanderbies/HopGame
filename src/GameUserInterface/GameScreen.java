@@ -58,6 +58,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private Land land;
     private Clouds clouds;
     private ObstaclesManager obstaclesManager;
+    public static Bomb bomb;
     public static ChooseCharacter chooseCharacter;
     private float score = 0.0f;
 
@@ -101,6 +102,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         mainHero.update();
         land.update();
         clouds.update();
+        bomb.update();
         obstaclesManager.update();
         if (mainHero.getAlive() == false){
             gameState = GAME_OVER_STATE;
@@ -128,6 +130,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             case GAME_FIRST_STATE:
                 mainHero = new MainHero();
                 mainHero.setX(50);
+                bomb = new Bomb(mainHero);
                 land = new Land(this);
                 clouds = new Clouds();
                 obstaclesManager = new ObstaclesManager(mainHero);
@@ -148,6 +151,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 g.drawImage(backToMenuImg, 1000, 598, this);
                 mainHero.draw(g);
                 obstaclesManager.draw(g);
+                bomb.draw(g);
                 break;
             case GAME_OVER_STATE:
                 clouds.draw(g);
@@ -159,6 +163,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 g.drawImage(backToMenuImg, 1000, 598, this);
                 mainHero.draw(g);
                 obstaclesManager.draw(g);
+                bomb.draw(g);
                 break;
             case GAME_MENU_STATE:
                 Graphics2D g2d = (Graphics2D) g;
@@ -235,6 +240,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     score = 0.0f;
                     obstaclesManager.reset();
                     mainHero.setAlive(true);
+                    bomb.reset();
                     gameState = GAME_PLAY_STATE;
                     changedSpeed = false;
                     SPEED_LEVEL = 20;
