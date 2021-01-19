@@ -2,12 +2,10 @@ package GameObjects;
 
 import util.ChooseCharacter;
 import util.Resource;
-import util.Animation;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static GameUserInterface.GameScreen.GRAVITY;
 import static GameUserInterface.GameScreen.GROUND;
 
 
@@ -29,18 +27,16 @@ public class Bomb {
     public void update(){ 
         if(new Rectangle((int)x,(int) y,70, 70).intersects(mainHero.getBound())){
             mainHero.setAlive(false);
-            System.out.println("ahcoahf");
         }
         else if(y < GROUND - rect.getHeight()){
             y+=5;
         }
-        else /*(y == GROUND - rect.getHeight())*/{
+        else {
             y = (float) (GROUND - rect.getHeight());
             x-=2;
         }
     }
     public void draw(Graphics g){
-
         if(x <= 125){
             g.drawImage(exp, (int) x, (int) y, null);
         }

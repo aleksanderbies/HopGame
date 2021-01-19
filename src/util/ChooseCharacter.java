@@ -16,6 +16,9 @@ public class ChooseCharacter {
     public static String bgMusic = "sounds/rest_bgmusic.wav";
     public static String bombPath = "images/obstacles/bomb.png";
     public static String explosionPath = "images/obstacles/explosion.png";
+    public static String coinPath = "images/obstacles/coin.png";
+    public static String bootPath = "images/obstacles/boot.png";
+
 
 
     public void changeCharacter() {

@@ -59,8 +59,9 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private Clouds clouds;
     private ObstaclesManager obstaclesManager;
     public static Bomb bomb;
+    public static BonusCoin coin;
     public static ChooseCharacter chooseCharacter;
-    private float score = 0.0f;
+    public static float score = 0.0f;
 
 
     public static int gameState = GAME_MENU_STATE;
@@ -103,6 +104,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         land.update();
         clouds.update();
         bomb.update();
+        coin.update();
         obstaclesManager.update();
         if (mainHero.getAlive() == false){
             gameState = GAME_OVER_STATE;
@@ -131,6 +133,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 mainHero = new MainHero();
                 mainHero.setX(50);
                 bomb = new Bomb(mainHero);
+                coin = new BonusCoin(mainHero);
                 land = new Land(this);
                 clouds = new Clouds();
                 obstaclesManager = new ObstaclesManager(mainHero);
@@ -152,6 +155,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 mainHero.draw(g);
                 obstaclesManager.draw(g);
                 bomb.draw(g);
+                coin.draw(g);
                 break;
             case GAME_OVER_STATE:
                 clouds.draw(g);
@@ -164,6 +168,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 mainHero.draw(g);
                 obstaclesManager.draw(g);
                 bomb.draw(g);
+                coin.draw(g);
                 break;
             case GAME_MENU_STATE:
                 Graphics2D g2d = (Graphics2D) g;
@@ -241,6 +246,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     obstaclesManager.reset();
                     mainHero.setAlive(true);
                     bomb.reset();
+                    coin.reset();
                     gameState = GAME_PLAY_STATE;
                     changedSpeed = false;
                     SPEED_LEVEL = 20;
