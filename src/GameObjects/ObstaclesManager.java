@@ -1,5 +1,6 @@
 package GameObjects;
 
+import GameUserInterface.GameScreen;
 import util.ChooseCharacter;
 import util.Resource;
 
@@ -15,6 +16,7 @@ public class ObstaclesManager {
 
     private BufferedImage cactus1, cactus2;
     private MainHero mainHero;
+    private Bomb bomb;
 
     public ObstaclesManager(MainHero mainHero){
         this.mainHero = mainHero;
@@ -24,6 +26,7 @@ public class ObstaclesManager {
         random = new Random();
         obstacles.add(getRandomObstacle());
         random = new Random();
+        bomb = GameScreen.bomb;
     }
     public void update(){
         for (Obstacles o : obstacles){
@@ -36,6 +39,7 @@ public class ObstaclesManager {
         if(obstacles.get(0).outOfScreen()){
             obstacles.remove(firstObstacle);
             obstacles.add(getRandomObstacle());
+            bomb.reset();
         }
     }
     public void draw(Graphics g){

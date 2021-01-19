@@ -14,6 +14,8 @@ public class ChooseCharacter {
     public static String obstacle2Path = "images/obstacles/Cactus (2).png";
     public static String skyPath = "images/sky/cloud1.png";
     public static String bgMusic = "sounds/rest_bgmusic.wav";
+    public static String bombPath = "images/obstacles/bomb.png";
+    public static String explosionPath = "images/obstacles/explosion.png";
 
     public void changeCharacter() {
         switch (GameScreen.character) {
