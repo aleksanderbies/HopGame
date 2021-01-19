@@ -15,6 +15,7 @@ public class ChooseCharacter {
     public static String skyPath = "images/sky/cloud1.png";
     public static String bgMusic = "sounds/rest_bgmusic.wav";
 
+
     public void changeCharacter() {
         switch (GameScreen.character) {
             case GameScreen.FOX:
