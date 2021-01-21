@@ -17,6 +17,7 @@ public class ObstaclesManager {
     private BufferedImage cactus1, cactus2;
     private MainHero mainHero;
     private Bomb bomb;
+    private BonusCoin coin;
 
     public ObstaclesManager(MainHero mainHero){
         this.mainHero = mainHero;
@@ -27,6 +28,7 @@ public class ObstaclesManager {
         obstacles.add(getRandomObstacle());
         random = new Random();
         bomb = GameScreen.bomb;
+        coin = GameScreen.coin;
     }
     public void update(){
         for (Obstacles o : obstacles){
@@ -40,6 +42,7 @@ public class ObstaclesManager {
             obstacles.remove(firstObstacle);
             obstacles.add(getRandomObstacle());
             bomb.reset();
+            coin.reset();
         }
     }
     public void draw(Graphics g){
