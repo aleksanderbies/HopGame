@@ -1,10 +1,12 @@
 package GameObjects;
 
+import GameUserInterface.GameScreen;
 import util.ChooseCharacter;
 import util.Resource;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 import static GameUserInterface.GameScreen.GROUND;
 
@@ -37,9 +39,7 @@ public class Bomb {
         }
     }
     public void draw(Graphics g){
-        if(x <= 125){
-            g.drawImage(exp, (int) x, (int) y, null);
-        }
+        if(x <= 125) g.drawImage(exp, (int) x, (int) y, null);
         else g.drawImage(bomb, (int) x, (int) y, null);
     }
     public void reset(){

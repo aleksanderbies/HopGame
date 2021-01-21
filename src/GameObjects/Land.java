@@ -18,7 +18,7 @@ public class Land {
         imageLand1= Resource.getResourceImage(ChooseCharacter.groundPath);
         imageLand1= Resource.getResourceImage(ChooseCharacter.groundPath);
         float Counter = 1280/imageLand1.getWidth();
-        System.out.println(Counter);
+        //System.out.println(Counter);
         for (int i = 0; i<(int) Counter + 1; i++){
             ImageLand land = new ImageLand();
             land.X_pos = (int) (i * imageLand1.getWidth());

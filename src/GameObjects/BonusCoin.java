@@ -19,12 +19,12 @@ public class BonusCoin {
 
     public BonusCoin(MainHero mainHero) {
         this.mainHero = mainHero;
-        rect = new Rectangle((int) x, (int) y,70,70);
+        rect = new Rectangle((int) x, (int) y,50,50);
         coin = Resource.getResourceImage(ChooseCharacter.coinPath);
     }
 
     public void update() {
-        if (new Rectangle((int)x,(int) y,70, 70).intersects(mainHero.getBound()) && !collectedCoin) {
+        if (new Rectangle((int)x,(int) y,50, 50).intersects(mainHero.getBound()) && !collectedCoin) {
             GameScreen.score += 100;
             collectedCoin = true;
         }
@@ -37,6 +37,7 @@ public class BonusCoin {
 
     public void draw(Graphics g) {
         if (x >= 125) g.drawImage(coin, (int) x, (int) y, null);
+        else if (x <= 125 && !collectedCoin) g.drawImage(coin, (int) x, (int) y, null);
     }
 
     public void reset() {
