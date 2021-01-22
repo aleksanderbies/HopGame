@@ -18,6 +18,7 @@ public class ObstaclesManager {
     private MainHero mainHero;
     private Bomb bomb;
     private BonusCoin coin;
+    private Boots boots;
 
     public ObstaclesManager(MainHero mainHero){
         this.mainHero = mainHero;
@@ -29,11 +30,12 @@ public class ObstaclesManager {
         random = new Random();
         bomb = GameScreen.bomb;
         coin = GameScreen.coin;
+        boots = GameScreen.boots;
     }
     public void update(){
         for (Obstacles o : obstacles){
             o.update();
-            if(o.getBound().intersects(mainHero.getBound())){
+            if(o.getBound().intersects(mainHero.getBound()) && !Boots.collectedBoots){
                 mainHero.setAlive(false);
             }
         }
@@ -42,7 +44,20 @@ public class ObstaclesManager {
             obstacles.remove(firstObstacle);
             obstacles.add(getRandomObstacle());
             bomb.reset();
-            coin.reset();
+            GameScreen.obstaclesAvoided++;
+            BonusCoin.info = false;
+            if (GameScreen.obstaclesAvoided == 3) {
+                GameScreen.obstaclesAvoided = 0;
+                if (Boots.collectedBoots) {
+                    GameScreen.SPEED_LEVEL = GameScreen.oldSpeed;
+                    Boots.collectedBoots = false;
+                }
+                if (random.nextInt(10) > 4){
+                    coin.reset();
+                } else {
+                    boots.reset();
+                }
+            }
         }
     }
     public void draw(Graphics g){
