@@ -16,6 +16,7 @@ public class BonusCoin {
     private MainHero mainHero;
     private BufferedImage coin;
     private boolean collectedCoin = false;
+    public static boolean info = false;
 
     public BonusCoin(MainHero mainHero) {
         this.mainHero = mainHero;
@@ -27,6 +28,7 @@ public class BonusCoin {
         if (new Rectangle((int)x,(int) y,50, 50).intersects(mainHero.getBound()) && !collectedCoin) {
             GameScreen.score += 100;
             collectedCoin = true;
+            info = true;
         }
         else if (y < GROUND - rect.getHeight()) y += 5;
         else {

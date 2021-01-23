@@ -41,6 +41,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private final Image chooseImg = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/choose_text.png");
     private final Image startGameGif = Toolkit.getDefaultToolkit().getImage("images/choose_character_images/start_game.gif");
     private final Image backToMenuImg = Toolkit.getDefaultToolkit().getImage("images/texts/back_to_menu.gif");
+    private final Image score100Img = Toolkit.getDefaultToolkit().getImage("images/texts/score100.png");
+    private final Image immortalImg = Toolkit.getDefaultToolkit().getImage("images/texts/immortal.png");
     // ************************************
     // Game variables
     public static final int GAME_FIRST_STATE = 0;
@@ -51,7 +53,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public static final float GRAVITY = 0.1f;
     public static final float GROUND = 480;
 
-    private int SPEED_LEVEL = 20;
+    public static int SPEED_LEVEL = 20;
     private boolean changedSpeed = false;
     private MainHero mainHero;
     private Thread thread;
@@ -60,8 +62,11 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private ObstaclesManager obstaclesManager;
     public static Bomb bomb;
     public static BonusCoin coin;
+    public static Boots boots;
     public static ChooseCharacter chooseCharacter;
     public static float score = 0.0f;
+    public static int obstaclesAvoided = 0;
+    public static int oldSpeed;
 
 
     public static int gameState = GAME_MENU_STATE;
@@ -105,6 +110,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         clouds.update();
         bomb.update();
         coin.update();
+        boots.update();
         obstaclesManager.update();
         if (mainHero.getAlive() == false){
             gameState = GAME_OVER_STATE;
@@ -112,13 +118,16 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     }
 
     private void updateSpeed() {
-        if (SPEED_LEVEL <= 1200) {
+        if (SPEED_LEVEL - 3 > 1) {
             if (changedSpeed == false) {
                 if (Math.abs((int) score) % 100 == 50) {
-                    SPEED_LEVEL -= 2;
+                    SPEED_LEVEL -= 3;
+                    changedSpeed = true;
+                } else if (Boots.collectedBoots) {
+                    SPEED_LEVEL = 2;
                     changedSpeed = true;
                 }
-            } else if (Math.abs((int) score) % 100 == 0) {
+            } else if (Math.abs((int) score) % 100 != 50) {
                 changedSpeed = false;
             }
         }
@@ -134,6 +143,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 mainHero.setX(50);
                 bomb = new Bomb(mainHero);
                 coin = new BonusCoin(mainHero);
+                boots = new Boots(mainHero);
                 land = new Land(this);
                 clouds = new Clouds();
                 obstaclesManager = new ObstaclesManager(mainHero);
@@ -152,9 +162,12 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 g.setFont(new Font("Helvetica", Font.BOLD,20));
                 g.drawString("Score: "+String.valueOf((int) Math.floor(score)), 1100,50);
                 g.drawImage(backToMenuImg, 1000, 598, this);
+                if (Boots.collectedBoots) g.drawImage(immortalImg, 350, 80, this);
+                else if (BonusCoin.info) g.drawImage(score100Img, 450, 80, this);
                 mainHero.draw(g);
                 obstaclesManager.draw(g);
                 bomb.draw(g);
+                boots.draw(g);
                 coin.draw(g);
                 break;
             case GAME_OVER_STATE:
@@ -169,6 +182,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 obstaclesManager.draw(g);
                 bomb.draw(g);
                 coin.draw(g);
+                boots.draw(g);
                 break;
             case GAME_MENU_STATE:
                 Graphics2D g2d = (Graphics2D) g;
@@ -247,6 +261,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     mainHero.setAlive(true);
                     bomb.reset();
                     coin.reset();
+                    boots.hardReset();
                     gameState = GAME_PLAY_STATE;
                     changedSpeed = false;
                     SPEED_LEVEL = 20;

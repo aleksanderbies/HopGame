@@ -27,7 +27,7 @@ public class Bomb {
     }
 
     public void update(){ 
-        if(new Rectangle((int)x,(int) y,70, 70).intersects(mainHero.getBound())){
+        if(new Rectangle((int)x,(int) y,70, 70).intersects(mainHero.getBound()) && !Boots.collectedBoots){
             mainHero.setAlive(false);
         }
         else if(y < GROUND - rect.getHeight()){
