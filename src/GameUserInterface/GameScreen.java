@@ -265,6 +265,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                     gameState = GAME_PLAY_STATE;
                     changedSpeed = false;
                     SPEED_LEVEL = 20;
+                    Boots.collectedBoots = false;
+                    BonusCoin.info = false; 
                 }
         }
     }
