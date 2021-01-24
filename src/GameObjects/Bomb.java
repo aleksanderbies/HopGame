@@ -1,16 +1,13 @@
 package GameObjects;
 
-import GameUserInterface.GameScreen;
 import util.ChooseCharacter;
 import util.Resource;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Random;
 
 import static GameUserInterface.GameScreen.GROUND;
 
-
+// Bomb obstacle class
 public class Bomb {
     private float x = 500;
     private float y = 0;
@@ -26,6 +23,7 @@ public class Bomb {
         exp = Resource.getResourceImage(ChooseCharacter.explosionPath);
     }
 
+    // Updates bomb position and check if main hero have collision with that bomb
     public void update(){ 
         if(new Rectangle((int)x,(int) y,70, 70).intersects(mainHero.getBound()) && !Boots.collectedBoots){
             mainHero.setAlive(false);
@@ -38,10 +36,14 @@ public class Bomb {
             x-=2;
         }
     }
+
+    // Draw bomb on game screen
     public void draw(Graphics g){
         if(x <= 125) g.drawImage(exp, (int) x, (int) y, null);
         else g.drawImage(bomb, (int) x, (int) y, null);
     }
+
+    // Reset bomb position
     public void reset(){
         x = 500;
         y = 0;

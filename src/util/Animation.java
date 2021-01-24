@@ -4,7 +4,6 @@ import java.util.*;
 import java.awt.image.BufferedImage;
 
 //class makes main hero moving
-
 public class Animation {
     private List<BufferedImage> frames;
     private int CurrentFrame = 0;

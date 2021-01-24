@@ -2,8 +2,10 @@ package util;
 
 import GameUserInterface.GameScreen;
 
+// Class switching paths to images after choosing character
 public class ChooseCharacter {
 
+    // All paths with default values
     public static String backgroundPath = "images/backgrounds/BG-1.png";
     public static String groundPath = "images/grounds/ground-1.png";
     public static String hero1Path = "images/heroes/fox-hero-1.png";
@@ -22,6 +24,8 @@ public class ChooseCharacter {
 
 
     public void changeCharacter() {
+
+        // Switching paths
         switch (GameScreen.character) {
             case GameScreen.FOX:
                 backgroundPath = "images/backgrounds/BG-1.png";

@@ -3,7 +3,6 @@ package GameUserInterface;
 import GameObjects.*;
 import util.ChooseCharacter;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -41,6 +40,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private final Image backToMenuImg = Toolkit.getDefaultToolkit().getImage("images/texts/back_to_menu.gif");
     private final Image score100Img = Toolkit.getDefaultToolkit().getImage("images/texts/score100.png");
     private final Image immortalImg = Toolkit.getDefaultToolkit().getImage("images/texts/immortal.png");
+
     // ************************************
     // Game variables
     public static final int GAME_FIRST_STATE = 0;
@@ -65,14 +65,11 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public static float score = 0.0f;
     public static int obstaclesAvoided = 0;
     public static int oldSpeed;
-
-
     public static int gameState = GAME_MENU_STATE;
 
     private final Image pressSpaceImg = Toolkit.getDefaultToolkit().getImage("images/texts/press_space.png");
     private final Image gameoverImg = Toolkit.getDefaultToolkit().getImage("images/texts/game_over.png");
     private final Image pressEnterImg = Toolkit.getDefaultToolkit().getImage("images/texts/press_enter.png");
-
     File bg_sound = new File(ChooseCharacter.bgMusic);
 
     public GameScreen(){

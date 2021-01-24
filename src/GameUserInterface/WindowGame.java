@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 //main class of the game
-
 public class WindowGame extends JFrame{
 
     private GameScreen gameScreen;

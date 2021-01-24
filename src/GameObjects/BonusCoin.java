@@ -3,12 +3,12 @@ package GameObjects;
 import GameUserInterface.GameScreen;
 import util.ChooseCharacter;
 import util.Resource;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static GameUserInterface.GameScreen.GROUND;
 
+// Bonus coin class
 public class BonusCoin {
     private float x = 800;
     private float y = 0;
@@ -24,6 +24,7 @@ public class BonusCoin {
         coin = Resource.getResourceImage(ChooseCharacter.coinPath);
     }
 
+    // Updates bonus coin position and check if main hero collected coin
     public void update() {
         if (new Rectangle((int)x,(int) y,50, 50).intersects(mainHero.getBound()) && !collectedCoin) {
             GameScreen.score += 100;
@@ -37,11 +38,13 @@ public class BonusCoin {
         }
     }
 
+    // Draw coin on game screen
     public void draw(Graphics g) {
         if (x >= 125) g.drawImage(coin, (int) x, (int) y, null);
         else if (x <= 125 && !collectedCoin) g.drawImage(coin, (int) x, (int) y, null);
     }
 
+    // Reset coin position
     public void reset() {
         x = 800;
         y = 0;

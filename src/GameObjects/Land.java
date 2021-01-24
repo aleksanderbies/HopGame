@@ -2,12 +2,13 @@ package GameObjects;
 
 import util.ChooseCharacter;
 import util.Resource;
-import static GameUserInterface.GameScreen.GROUND;
-
 import java.util.*;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
+
 import GameUserInterface.GameScreen;
+import static GameUserInterface.GameScreen.GROUND;
+
 public class Land {
 
     private List <ImageLand> listImage; //list of land images
