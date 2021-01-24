@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+//class to load images, it makes that we don't have to try - catch exception when we want to get image from disc
 public class Resource {
     public static BufferedImage getResourceImage(String path){
         BufferedImage img = null;

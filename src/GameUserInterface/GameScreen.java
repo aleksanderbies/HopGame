@@ -3,17 +3,15 @@ package GameUserInterface;
 import GameObjects.*;
 import util.ChooseCharacter;
 
-import javax.imageio.ImageIO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Rectangle2D;
 import javax.sound.sampled.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
+
 
 public class GameScreen extends JPanel implements Runnable, KeyListener {
 
@@ -87,6 +85,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     }
 
     @Override
+    // run of game method
     public void run(){
         playMusic();
         while (true){
@@ -103,6 +102,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             }
         }
 
+     // update of all game objects
     public void update(){
         updateSpeed();
         mainHero.update();
@@ -117,6 +117,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         }
     }
 
+    //speed update when two last digits of score are 50
     private void updateSpeed() {
         if (SPEED_LEVEL - 3 > 1) {
             if (changedSpeed == false) {
@@ -134,6 +135,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     }
 
     @Override
+    //paints all games object on screen according of game state
     public void paint (Graphics g){
         Image background = Toolkit.getDefaultToolkit().getImage(ChooseCharacter.backgroundPath);
         g.drawImage(background, 0, 0, this);
@@ -235,13 +237,15 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 break;
         }
     }
-
+    //**********************
+    //KeyListener methods
     @Override
     public void keyTyped(KeyEvent e){
 
     }
     @Override
     public void keyPressed(KeyEvent e){
+        //any key to make hero jump
         if(gameState == GAME_PLAY_STATE && mainHero.getY() == GROUND - MainHero.heroRun.getFrame().getHeight()) {
             mainHero.jump();
         }
@@ -249,12 +253,12 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     @Override
     public void keyReleased(KeyEvent e){
         switch (e.getKeyCode()){
-            case KeyEvent.VK_SPACE:
+            case KeyEvent.VK_SPACE: //start of game
                 if (gameState == GAME_FIRST_STATE){
                     gameState = GAME_PLAY_STATE;
                 }
                 break;
-            case KeyEvent.VK_ENTER:
+            case KeyEvent.VK_ENTER: //new game, reset game objects positions
                 if(gameState == GAME_OVER_STATE){
                     score = 0.0f;
                     obstaclesManager.reset();
@@ -270,6 +274,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
                 }
         }
     }
+
+    //play music method
     private void playMusic(){
         try {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(bg_sound);

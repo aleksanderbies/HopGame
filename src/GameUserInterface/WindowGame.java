@@ -3,6 +3,7 @@ package GameUserInterface;
 import javax.swing.*;
 import java.awt.*;
 
+//main class of the game
 
 public class WindowGame extends JFrame{
 
@@ -21,7 +22,7 @@ public class WindowGame extends JFrame{
         addKeyListener(gameScreen);
         gameScreen.addMouseListener(new MouseInput());
     }
-
+    //method starts the game
     public void startGame(){
         gameScreen.startGame();
     }

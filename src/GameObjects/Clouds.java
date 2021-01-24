@@ -46,7 +46,7 @@ public class Clouds {
         cloud1.Y_pos = 40;
         clouds.add(cloud1);
     }
-
+    //update of clouds X coordinate, makes that clouds moving
     public void update(){
         for (Cloud cloud : clouds){
             cloud.X_pos --;
@@ -59,11 +59,13 @@ public class Clouds {
         }
 
     }
+    //drawing the clouds
     public void draw(Graphics g){
         for(Cloud cloud : clouds) {
             g.drawImage(cloudImage, (int) cloud.X_pos, (int) cloud.Y_pos, null);
         }
     }
+    //class to make a list of clouds
     private class Cloud{
         float X_pos;
         float Y_pos;

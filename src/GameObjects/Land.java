@@ -10,15 +10,13 @@ import java.awt.Graphics;
 import GameUserInterface.GameScreen;
 public class Land {
 
-    private List <ImageLand> listImage;
-    private BufferedImage imageLand1;
+    private List <ImageLand> listImage; //list of land images
+    private BufferedImage imageLand1; //land image
 
     public Land(GameScreen game){
         listImage = new ArrayList<ImageLand>();
         imageLand1= Resource.getResourceImage(ChooseCharacter.groundPath);
-        imageLand1= Resource.getResourceImage(ChooseCharacter.groundPath);
         float Counter = 1280/imageLand1.getWidth();
-        //System.out.println(Counter);
         for (int i = 0; i<(int) Counter + 1; i++){
             ImageLand land = new ImageLand();
             land.X_pos = (int) (i * imageLand1.getWidth());
@@ -26,6 +24,7 @@ public class Land {
             listImage.add(land);
         }
     }
+    //makes land moving
     public void update(){
         for (ImageLand imageLand : listImage){
             imageLand.X_pos --;
@@ -37,12 +36,13 @@ public class Land {
             listImage.remove(0);
         }
     }
+    //draw the land
     public void draw(Graphics g){
         for(ImageLand imageLand:listImage) {
             g.drawImage(imageLand.image, imageLand.X_pos, (int) GROUND-5, null);
         }
     }
-
+    //class to create list of land images
     private class ImageLand{
         int X_pos;
         BufferedImage image;

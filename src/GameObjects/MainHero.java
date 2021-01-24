@@ -5,7 +5,6 @@ import util.Resource;
 import util.Animation;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 import static GameUserInterface.GameScreen.GRAVITY;
 import static GameUserInterface.GameScreen.GROUND;
@@ -26,6 +25,7 @@ public class MainHero {
         rect = new Rectangle();
     }
 
+    //update the Y coordinates of main Hero
     public void update(){
         heroRun.update();
         if(y >= GROUND - heroRun.getFrame().getHeight()){
@@ -40,9 +40,12 @@ public class MainHero {
         rect.width = heroRun.getFrame().getWidth();
         rect.height = heroRun.getFrame().getHeight();
     }
+    //create rectangle to check that main hero have collision with obstacle
     public Rectangle getBound(){
         return rect;
     }
+
+    //draws the main hero, according of game state
     public void draw(Graphics g){
         if(!getAlive()){
             g.drawImage(Resource.getResourceImage(ChooseCharacter.heroDeadPath), (int) x, (int) y, null);
@@ -53,37 +56,46 @@ public class MainHero {
         else g.drawImage(heroRun.getFrame(), (int) x, (int)y , null );
     }
 
+    //makes that main hero jump
     public void jump(){
         speedY = -7;
         y += speedY;
     }
 
+    //gets X coordinates
     public float getX() {
         return x;
     }
 
+    //sets X coordinates
     public void setX(float x) {
         this.x = x;
     }
 
+    //gets Y coordinates
     public float getY() {
         return y;
     }
 
+    //sets X coordinates
     public void setY(float y) {
         this.y = y;
     }
 
+    //gets speedY value
     public float getSpeedY() {
         return speedY;
     }
 
+    //sets speedY value
     public void setSpeedY(float speedY) {
         this.speedY = speedY;
     }
 
+    //sets alive value
     public void setAlive(boolean alive) {this.alive = alive;}
 
+    //gets alive value
     public boolean getAlive(){
         return this.alive;
     }

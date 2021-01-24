@@ -32,6 +32,7 @@ public class ObstaclesManager {
         coin = GameScreen.coin;
         boots = GameScreen.boots;
     }
+    //update of obstacle positions, check of bonuses and bonuses reset
     public void update(){
         for (Obstacles o : obstacles){
             o.update();
@@ -60,15 +61,19 @@ public class ObstaclesManager {
             }
         }
     }
+    //drawing the obstacles
     public void draw(Graphics g){
         for (Obstacles o : obstacles){
             o.draw(g);
         }
     }
+    //reset of obstacles when "new game clicked"
     public void reset(){
         obstacles.clear();
         obstacles.add(getRandomObstacle());
     }
+
+    //get random obstacle image (probability 50:50)
     public Obstacle getRandomObstacle(){
         Obstacle obstacle;
         obstacle = new Obstacle();

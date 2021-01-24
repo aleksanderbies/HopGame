@@ -3,6 +3,8 @@ package util;
 import java.util.*;
 import java.awt.image.BufferedImage;
 
+//class makes main hero moving
+
 public class Animation {
     private List<BufferedImage> frames;
     private int CurrentFrame = 0;
@@ -14,6 +16,7 @@ public class Animation {
 
         frames = new ArrayList<BufferedImage>();
     }
+    //create main hero animation
     public void update(){
         if (System.currentTimeMillis() - prevTime > deltaTime) {
             CurrentFrame++;
@@ -26,7 +29,7 @@ public class Animation {
     public void addFrame(BufferedImage frame){
         frames.add(frame);
     }
-
+    //exchange of main hero image
     public BufferedImage getFrame(){
         if(frames.size() >0){
             return  frames.get(CurrentFrame);
